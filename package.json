@@ -1,5 +1,5 @@
 {
-  "name": "react-autocomplete",
+  "name": "ron-react-autocomplete",
   "version": "0.0.1",
   "description": "Autocomplete component for React",
   "main": "lib/index.js",
