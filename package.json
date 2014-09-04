@@ -2,7 +2,7 @@
   "name": "ron-react-autocomplete",
   "version": "0.0.2",
   "description": "Autocomplete component for React",
-  "main": "lib/index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "make test"
   },
@@ -18,24 +18,31 @@
     "react": "^0.11.0"
   },
   "devDependencies": {
-    "browserify": "^4.1.9",
+    "browserify": "^5.11.0",
     "eslint-jsx": "git+https://github.com/andreypopp/eslint#jsx",
     "jquery": "^2.1.1",
     "mocha": "^1.18.2",
     "mochify": "^0.8.1",
     "react": "^0.11.0",
-    "sinon": "^1.9.1"
+    "sinon": "^1.9.1",
+    "browserify-shim": "^3.7.0"
+  },
+  "browserify-shim": {
+    "react/addons": "global:React"
   },
   "browserify": {
-    "transform": [
+    "transform":
+    [
       [
         "reactify",
         {
           "es6": true
         }
-      ]
+      ],
+      "browserify-shim"
     ]
   },
+
   "author": "Conor Malone",
   "license": "MIT",
   "bugs": {
@@ -43,6 +50,7 @@
   },
   "homepage": "https://github.com/malonecj/react-autocomplete",
   "dependencies": {
-    "reactify": "^0.11.0"
+    "reactify": "^0.11.0",
+    "browserify-shim": "^3.7.0"
   }
 }
