@@ -1,0 +1,22 @@
+{
+  "name": "ron-react-autocomplete",
+  "main": "react-autocomplete.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/malonecj/react-autocomplete",
+  "authors": [
+    "malonecj <malonecj@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "docs",
+    "Makefile",
+    "LICENSE",
+    ".gitignore",
+    ".git"
+
+  ]
+}
