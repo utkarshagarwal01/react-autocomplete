@@ -1,6 +1,6 @@
 {
   "name": "ron-react-autocomplete",
-  "main": "react-autocomplete.js",
+  "main": "standalone/reactAutocomplete.js",
   "version": "0.0.0",
   "homepage": "https://github.com/malonecj/react-autocomplete",
   "authors": [
