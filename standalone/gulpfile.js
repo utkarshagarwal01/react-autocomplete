@@ -20,15 +20,15 @@ gulp.task('bundle', function() {
   };
 
 
-  return buildBundle(bundleConfig, 'reactAutocomplete.js', '.', undefined, {excludes : ['react', 'react/addons']} );
+  return buildBundle(bundleConfig, '../reactAutocomplete.js', '.', undefined, {excludes : ['react', 'react/addons']} );
 
 });
 
 
 gulp.task('default', ['bundle', 'styles'],  function() {
 
-  gulp.src('./reactAutocomplete.js')
+  gulp.src('../reactAutocomplete.js')
   .pipe(uglify())
   .pipe(rename('reactAutocomplete.min.js'))
-  .pipe(gulp.dest('.'))
+  .pipe(gulp.dest('../'))
 });
