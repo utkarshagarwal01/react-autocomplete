@@ -6,10 +6,10 @@
     root.ReactAutocomplete = factory(root.React);
   }
 })(window, function(React) {
-  return require('./lib/');
+  return require('../lib/index.js');
 });
 
-},{"./lib/":3}],2:[function(require,module,exports){
+},{"../lib/index.js":2}],2:[function(require,module,exports){
 (function (global){
 /**
  * @jsx React.DOM
@@ -395,7 +395,4 @@ function searchArray(options, searchTerm, cb) {
 module.exports = Autocomplete;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],3:[function(require,module,exports){
-require('../lib/');
-
-},{"../lib/":2}]},{},[1]);
+},{}]},{},[1]);

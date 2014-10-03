@@ -5,5 +5,5 @@
     root.ReactAutocomplete = factory(root.React);
   }
 })(window, function(React) {
-  return require('./lib/');
+  return require('../lib/index.js');
 });
