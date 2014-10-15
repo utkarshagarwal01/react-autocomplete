@@ -1,5 +1,5 @@
 var gulp      = require("gulp");
-var gutil     = require("gulp-util");
+
 var react = require('gulp-react');
 var clean = require('gulp-clean');
 
