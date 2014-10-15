@@ -2,3 +2,7 @@ src
 standalone
 bower.json
 .eslintrc
+gulpfile.js
+lib/__tests__
+README.md
+LICENSE
