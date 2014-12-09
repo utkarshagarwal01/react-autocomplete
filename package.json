@@ -1,6 +1,6 @@
 {
   "name": "ron-react-autocomplete",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Autocomplete component for React",
   "main": "./lib/index.js",
   "scripts": {
@@ -15,8 +15,8 @@
     "react",
     "autocomplete"
   ],
-  "peerDependencies": {
-    "react": "^0.11.0"
+  "dependencies": {
+    "react": "^0.12.1"
   },
   "devDependencies": {
     "browserify": "^5.12.0",
@@ -24,7 +24,6 @@
     "jquery": "^2.1.1",
     "mocha": "^1.18.2",
     "mochify": "^0.8.1",
-    "react": "^0.11.0",
     "sinon": "^1.9.1",
     "browserify-shim": "^3.7.0",
     "gulp-react": "^1.0.2",
