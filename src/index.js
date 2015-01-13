@@ -236,9 +236,10 @@ var Results = React.createClass({
       position: 'absolute',
       listStyleType: 'none'
     };
+    var {className, ...props} = this.props;
 
-    return this.transferPropsTo(
-      <ul style={style} className="react-autocomplete-Results">
+    return (
+      <ul {...props} style={style} className={className + " react-autocomplete-Results"}>
         {this.props.results.map(this.renderResult)}
       </ul>
     );
