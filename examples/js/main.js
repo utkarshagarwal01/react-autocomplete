@@ -9,3 +9,8 @@ var autocomplete2 = React.createElement(ReactAutocomplete, {options : epics, lab
 }});
 
 React.render(autocomplete2, document.getElementById('example2'));
+
+var epics2 = [{Id : 0, title : 'Unification Of Media'}, { Id : 1, title : 'Trading Desk'}, { Id : 2, title : 'Tech Costs'}]
+var autocomplete3 = React.createElement(ReactAutocomplete, {options : epics2, resultIdentifier : 'Id'});
+
+React.render(autocomplete3, document.getElementById('example3'));

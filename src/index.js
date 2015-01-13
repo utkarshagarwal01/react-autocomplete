@@ -39,6 +39,15 @@ var Autocomplete = React.createClass({
     };
   },
 
+  getResultIdentifier : function(result){
+    if(this.props.resultIdentifier === undefined){
+      return result.id;
+    }else{
+      return result[this.props.resultIdentifier];
+    }
+  },
+
+
   render: function() {
     var className = cx(
       this.props.className,
@@ -78,6 +87,7 @@ var Autocomplete = React.createClass({
           show={this.state.showResults}
           renderer={this.props.resultRenderer}
           label={this.props.label}
+          resultIdentifier={this.props.resultIdentifier}
           />
       </div>
     );
@@ -221,7 +231,7 @@ var Autocomplete = React.createClass({
       return -1;
     }
     for (var i = 0, len = this.state.results.length; i < len; i++) {
-      if (this.state.results[i].id === this.state.focusedValue.id) {
+      if (this.getResultIdentifier(this.state.results[i]) === this.getResultIdentifier(this.state.focusedValue)) {
         return i;
       }
     }
@@ -230,6 +240,17 @@ var Autocomplete = React.createClass({
 });
 
 var Results = React.createClass({
+
+  getResultIdentifier : function(result){
+    if(this.props.resultIdentifier === undefined){
+      if(!result.id){
+        throw ("id property not found on result. You must specify a resultIdentifier and pass as props to autocomplete component");
+      }
+      return result.id;
+    }else{
+      return result[this.props.resultIdentifier];
+    }
+  },
 
   render: function() {
     var style = {
@@ -247,12 +268,11 @@ var Results = React.createClass({
   },
 
   renderResult: function(result) {
-    var focused = this.props.focusedValue &&
-                  this.props.focusedValue.id === result.id;
-                  var renderer = this.props.renderer || Result;
+    var focused = this.props.focusedValue && this.getResultIdentifier(this.props.focusedValue) === this.getResultIdentifier(result);
+    var renderer = this.props.renderer || Result;
     return renderer({
       ref: focused ? "focused" : undefined,
-      key: result.id,
+      key: this.getResultIdentifier(result),
       result: result,
       focused: focused,
       onMouseEnter: this.onMouseEnterResult,
