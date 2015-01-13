@@ -33,7 +33,12 @@ module.exports = function (release) {
     },
 
     externals: {
-      "react/addons": "React"
+      "react/addons": {
+        root : 'React',
+        commonjs : 'react/addons',
+        commonjs2 : 'react/addons',
+        amd : 'react/addons'
+      }
     },
 
     stats: {
