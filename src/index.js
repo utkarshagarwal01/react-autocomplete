@@ -77,6 +77,7 @@ var Autocomplete = React.createClass({
           focusedValue={this.state.focusedValue}
           show={this.state.showResults}
           renderer={this.props.resultRenderer}
+          label={this.props.label}
           />
       </div>
     );
@@ -255,7 +256,8 @@ var Results = React.createClass({
       result: result,
       focused: focused,
       onMouseEnter: this.onMouseEnterResult,
-      onClick: this.props.onSelect
+      onClick: this.props.onSelect,
+      label : this.props.label
     });
   },
 
@@ -321,6 +323,22 @@ var Results = React.createClass({
 
 var Result = React.createClass({
 
+  getDefaultProps : function(){
+    return {
+      label : function(result){
+        return result.title;
+      }
+    }
+  },
+
+  getLabel : function(result){
+    if(typeof this.props.label === 'function'){
+      return this.props.label(result);
+    }else if(typeof this.props.label === 'string'){
+      return result[this.props.label];
+    }
+  },
+
   render: function() {
     var className = cx({
       'react-autocomplete-Result': true,
@@ -333,7 +351,7 @@ var Result = React.createClass({
         className={className}
         onClick={this.onClick}
         onMouseEnter={this.onMouseEnter}>
-        <a>{this.props.result.title}</a>
+        <a>{this.getLabel(this.props.result)}</a>
       </li>
     );
   },
