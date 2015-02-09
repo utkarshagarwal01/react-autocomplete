@@ -13,7 +13,6 @@
     "standalone",
     "test",
     "tests",
-    "lib",
     "docs",
     "Makefile",
     "LICENSE",
