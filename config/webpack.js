@@ -31,14 +31,19 @@ module.exports = function (release) {
       // name of the global var: "ReactAutocomplete"
       library: "ReactAutocomplete"
     },
-
     externals: {
+      "react": {
+        root : 'React',
+        commonjs : 'react/addons',
+        commonjs2 : 'react/addons',
+        amd : 'react/addons'
+      },
       "react/addons": {
         root : 'React',
         commonjs : 'react/addons',
         commonjs2 : 'react/addons',
         amd : 'react/addons'
-      }
+      },
     },
 
     stats: {

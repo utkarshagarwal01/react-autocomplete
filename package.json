@@ -1,6 +1,6 @@
 {
   "name": "ron-react-autocomplete",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Autocomplete component for React",
   "main": "./lib/reactAutoComplete.js",
   "scripts": {
@@ -55,9 +55,6 @@
     "mochify": "^0.8.1",
     "run-sequence": "^1.0.2",
     "webpack": "^1.4.15"
-  },
-  "browserify-shim": {
-    "react/addons": "global:React"
   },
   "browserify": {
     "transform": [
