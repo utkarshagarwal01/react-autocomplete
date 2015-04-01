@@ -3,8 +3,8 @@
  */
 'use strict';
 
-var React   = require('react');
-var cx      = require('react/lib/cx');
+var React         = require('react');
+var joinClasses   = require('classnames');
 
 var Autocomplete = React.createClass({
 
@@ -49,7 +49,7 @@ var Autocomplete = React.createClass({
 
 
   render: function() {
-    var className = cx(
+    var className = joinClasses(
       this.props.className,
       'react-autocomplete-Autocomplete',
       this.state.showResults ?
@@ -360,7 +360,7 @@ var Result = React.createClass({
   },
 
   render: function() {
-    var className = cx({
+    var className = joinClasses({
       'react-autocomplete-Result': true,
       'react-autocomplete-Result--active': this.props.focused
     });
