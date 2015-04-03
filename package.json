@@ -1,6 +1,6 @@
 {
   "name": "ron-react-autocomplete",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "Autocomplete component for React",
   "main": "./lib/reactAutoComplete.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "browser-sync": "^2.0.0-rc10",
     "classnames": "^1.2.0",
     "engine.io": "^1.5.1",
-    "react": "~0.12.2",
+    "react": "~0.13.1",
     "socket.io-client": "^1.3.3"
   },
   "devDependencies": {

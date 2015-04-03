@@ -269,16 +269,15 @@ var Results = React.createClass({
 
   renderResult: function(result) {
     var focused = this.props.focusedValue && this.getResultIdentifier(this.props.focusedValue) === this.getResultIdentifier(result);
-    var renderer = this.props.renderer || Result;
-    return renderer({
-      ref: focused ? "focused" : undefined,
-      key: this.getResultIdentifier(result),
-      result: result,
-      focused: focused,
-      onMouseEnter: this.onMouseEnterResult,
-      onClick: this.props.onSelect,
-      label : this.props.label
-    });
+    var Renderer = this.props.renderer || Result;
+    return (<Renderer
+      ref={focused ? "focused" : undefined}
+      key={this.getResultIdentifier(result)}
+      result={result}
+      focused={focused}
+      onMouseEnter={this.onMouseEnterResult}
+      onClick={this.props.onSelect}
+      label={this.props.label}/>)
   },
 
   componentDidUpdate: function() {
