@@ -1,8 +1,3 @@
-/**
- * @jsx React.DOM
- */
-'use strict';
-
 var React         = require('react');
 var joinClasses   = require('classnames');
 
