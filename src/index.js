@@ -12,7 +12,8 @@ var Autocomplete = React.createClass({
     ]),
     value: React.PropTypes.object,
     onChange: React.PropTypes.func,
-    onError: React.PropTypes.func
+    onError: React.PropTypes.func,
+    onFocus: React.PropTypes.func
   },
 
   getDefaultProps: function() {
@@ -68,7 +69,7 @@ var Autocomplete = React.createClass({
           style={{width: '100%'}}
           onClick={this.showAllResults}
           onChange={this.onQueryChange}
-          onFocus={this.showAllResults}
+          onFocus={this.onSearchInputFocus}
           onBlur={this.onQueryBlur}
           onKeyDown={this.onQueryKeyDown}
           value={this.state.searchTerm}
@@ -175,6 +176,14 @@ var Autocomplete = React.createClass({
       this.blurTimer = null;
     }
     this.refs.search.getDOMNode().focus();
+  },
+  
+  onSearchInputFocus: function() {
+    if (this.props.onFocus) {
+      this.props.onFocus();
+    }
+    
+    this.showAllResults();
   },
 
   onBlur: function() {
