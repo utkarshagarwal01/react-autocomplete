@@ -177,12 +177,12 @@ var Autocomplete = React.createClass({
     }
     this.refs.search.getDOMNode().focus();
   },
-  
+
   onSearchInputFocus: function() {
     if (this.props.onFocus) {
       this.props.onFocus();
     }
-    
+
     this.showAllResults();
   },
 
@@ -248,7 +248,7 @@ var Results = React.createClass({
   getResultIdentifier : function(result){
     if(this.props.resultIdentifier === undefined){
       if(!result.id){
-        throw ("id property not found on result. You must specify a resultIdentifier and pass as props to autocomplete component");
+        throw Error("id property not found on result. You must specify a resultIdentifier and pass as props to autocomplete component");
       }
       return result.id;
     }else{
