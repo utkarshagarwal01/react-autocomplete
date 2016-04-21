@@ -1,9 +1,9 @@
-/** @jsx React.DOM */
 'use strict';
 
+var React        = require('react');
 var assert       = require('assert');
 var sinon        = require('sinon');
-var TestUtils    = require('react/lib/ReactTestUtils');
+var TestUtils    = require('react-addons-test-utils');
 var Autocomplete = require('../');
 
 var options      = require('./fixture.json');
@@ -11,7 +11,7 @@ var options      = require('./fixture.json');
 describe('Autocomplete', function() {
 
   function createAndMount(props) {
-    var component = Autocomplete(props);
+    var component = React.createElement(Autocomplete, props);
     return TestUtils.renderIntoDocument(component);
   }
 
