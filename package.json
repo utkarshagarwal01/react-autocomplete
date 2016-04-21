@@ -15,8 +15,8 @@
     "autocomplete"
   ],
   "peerDependencies": {
-    "react": "~0.14.6",
-    "react-dom": "~0.14.6"
+    "react": "~15.0.1",
+    "react-dom": "~15.0.1"
   },
   "dependencies": {
     "browser-sync": "^2.0.0-rc10",
@@ -62,7 +62,7 @@
     "minimist": "^1.1.0",
     "mocha": "^1.18.2",
     "mochify": "^0.8.1",
-    "react-addons-test-utils": "^0.14.8",
+    "react-addons-test-utils": "^15.0.1",
     "run-sequence": "^1.0.2",
     "sinon": "^1.17.3",
     "webpack": "^1.4.15"

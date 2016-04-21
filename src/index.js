@@ -175,7 +175,7 @@ var Autocomplete = React.createClass({
       clearTimeout(this.blurTimer);
       this.blurTimer = null;
     }
-    this.refs.search.getDOMNode().focus();
+    this.refs.search.focus();
   },
 
   onSearchInputFocus: function() {
