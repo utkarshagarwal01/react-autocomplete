@@ -1,9 +1,9 @@
-/** @jsx React.DOM */
 'use strict';
 
+var React        = require('react');
 var assert       = require('assert');
 var sinon        = require('sinon');
-var TestUtils    = require('react/lib/ReactTestUtils');
+var TestUtils    = require('react-addons-test-utils');
 var Autocomplete = require('../');
 
 var options      = require('./fixture.json');
@@ -11,7 +11,7 @@ var options      = require('./fixture.json');
 describe('Autocomplete', function() {
 
   function createAndMount(props) {
-    var component = Autocomplete(props);
+    var component = React.createElement(Autocomplete, props);
     return TestUtils.renderIntoDocument(component);
   }
 
@@ -25,25 +25,25 @@ describe('Autocomplete', function() {
 
   function getValueDOM(parent) {
     var input = getDOMAnyInputComponent(parent);
-    return input.getDOMNode().value;
+    return input.value;
   }
 
   function setValueDOM(parent, text) {
       var input = getDOMAnyInputComponent(parent);
-      input.getDOMNode().value = text;
+      input.value = text;
       TestUtils.Simulate.change(input);
   }
 
   function getResultsContainerDOM(component) {
     return TestUtils.findRenderedDOMComponentWithClass(
       component,
-      'react-autocomplete-Results').getDOMNode();
+      'react-autocomplete-Results');
   }
 
   function getResultsDOM(component) {
     return TestUtils.scryRenderedDOMComponentsWithClass(
       component,
-      'react-autocomplete-Result').map((c) => c.getDOMNode());
+      'react-autocomplete-Result').map((c) => c);
   }
 
   function assertResultsShown(component, shown) {
@@ -60,7 +60,7 @@ describe('Autocomplete', function() {
 
   it('should have "react-autocomplete" class', function() {
     var component = createAndMount({options: options});
-    var classes = component.getDOMNode().classList;
+    var classes = component.refs.search.classList;
     assert.equal(classes.contains('react-autocomplete-Autocomplete'), true);
   });
 

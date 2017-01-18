@@ -4,11 +4,11 @@
     "node": true
   },
   "rules": {
-    "new-cap": false,
-    "quotes": false,
-    "no-underscore-dangle": false,
-    "no-multi-str": false,
-    "no-use-before-define": false,
+    "new-cap": 0,
+    "quotes": 0,
+    "no-underscore-dangle": 0,
+    "no-multi-str": 0,
+    "no-use-before-define": 0,
     "no-unused-vars": [2, "all"],
     "no-mixed-requires": [1, true],
     "max-len": [1, 80, 4]
