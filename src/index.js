@@ -1,5 +1,5 @@
 var React         = require('react');
-var ReactDOM      = require('react-DOM');
+var ReactDOM      = require('react-dom');
 var joinClasses   = require('classnames');
 
 var Autocomplete = React.createClass({
@@ -266,7 +266,7 @@ var Results = React.createClass({
     var {className, ...props} = this.props;
 
     return (
-      <ul {...props} style={style} className={className + " react-autocomplete-Results"}>
+      <ul style={style} className={className + " react-autocomplete-Results"}>
         {this.props.results.map(this.renderResult)}
       </ul>
     );
