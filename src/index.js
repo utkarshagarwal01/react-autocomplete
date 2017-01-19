@@ -1,4 +1,5 @@
 var React         = require('react');
+var ReactDOM      = require('react-DOM');
 var joinClasses   = require('classnames');
 
 var Autocomplete = React.createClass({
@@ -299,11 +300,11 @@ var Results = React.createClass({
   scrollToFocused: function() {
     var focused = this.refs && this.refs.focused;
     if (focused) {
-      var containerNode = this.getDOMNode();
+      var containerNode = ReactDOM.findDOMNode(this);
       var scroll = containerNode.scrollTop;
       var height = containerNode.offsetHeight;
 
-      var node = focused.getDOMNode();
+      var node = ReactDOM.findDOMNode(focused);
       var top = node.offsetTop;
       var bottom = top + node.offsetHeight;
 
@@ -329,7 +330,7 @@ var Results = React.createClass({
       // we need to make sure focused node is visible
       // for some reason mouse events fire on visible nodes due to
       // box-shadow
-      var containerNode = this.getDOMNode();
+      var containerNode = ReactDOM.findDOMNode(this);
       var scroll = containerNode.scrollTop;
       var height = containerNode.offsetHeight;
 

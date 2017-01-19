@@ -1,6 +1,7 @@
 'use strict';
 
 var React        = require('react');
+var ReactDOM     = require('react-dom');
 var assert       = require('assert');
 var sinon        = require('sinon');
 var TestUtils    = require('react-addons-test-utils');
@@ -25,25 +26,27 @@ describe('Autocomplete', function() {
 
   function getValueDOM(parent) {
     var input = getDOMAnyInputComponent(parent);
-    return input.value;
+    return ReactDOM.findDOMNode(input).value;
   }
 
   function setValueDOM(parent, text) {
       var input = getDOMAnyInputComponent(parent);
-      input.value = text;
+      ReactDOM.findDOMNode(input).value = text;
       TestUtils.Simulate.change(input);
   }
 
   function getResultsContainerDOM(component) {
-    return TestUtils.findRenderedDOMComponentWithClass(
+    var results = TestUtils.findRenderedDOMComponentWithClass(
       component,
       'react-autocomplete-Results');
+      
+    return ReactDOM.findDOMNode(results);
   }
 
   function getResultsDOM(component) {
     return TestUtils.scryRenderedDOMComponentsWithClass(
       component,
-      'react-autocomplete-Result').map((c) => c);
+      'react-autocomplete-Result').map((c) => ReactDOM.findDOMNode(c));
   }
 
   function assertResultsShown(component, shown) {
@@ -60,7 +63,7 @@ describe('Autocomplete', function() {
 
   it('should have "react-autocomplete" class', function() {
     var component = createAndMount({options: options});
-    var classes = component.refs.search.classList;
+    var classes = ReactDOM.findDOMNode(component).classList;
     assert.equal(classes.contains('react-autocomplete-Autocomplete'), true);
   });
 
