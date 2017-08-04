@@ -263,7 +263,7 @@ var Results = React.createClass({
       position: 'absolute',
       listStyleType: 'none'
     };
-    var {className, ...props} = this.props;
+    var { className } = this.props;
 
     return (
       <ul style={style} className={className + " react-autocomplete-Results"}>
@@ -282,7 +282,7 @@ var Results = React.createClass({
       focused={focused}
       onMouseEnter={this.onMouseEnterResult}
       onClick={this.props.onSelect}
-      label={this.props.label}/>)
+      label={this.props.label}/>);
   },
 
   componentDidUpdate: function() {
@@ -352,7 +352,7 @@ var Result = React.createClass({
       label : function(result){
         return result.title;
       }
-    }
+    };
   },
 
   getLabel : function(result){
