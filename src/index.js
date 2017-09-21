@@ -8,7 +8,7 @@ var Autocomplete = React.createClass({
     options: React.PropTypes.any,
     search: React.PropTypes.func,
     resultRenderer: React.PropTypes.oneOfType([
-      React.PropTypes.component,
+      React.PropTypes.element,
       React.PropTypes.func
     ]),
     value: React.PropTypes.object,
