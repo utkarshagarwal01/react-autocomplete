@@ -1,6 +1,6 @@
 {
   "name": "ron-react-autocomplete",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "Autocomplete component for React",
   "main": "./lib/reactAutoComplete.js",
   "scripts": {
