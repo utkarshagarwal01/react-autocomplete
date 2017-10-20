@@ -76,7 +76,9 @@ gulp.task('bundle', function (cb) {
   var bundler = webpack(config);
 
   function bundle(err, stats) {
+    
     if (err) {
+      console.log(err);
       throw new $.util.PluginError('webpack', err);
     }
 

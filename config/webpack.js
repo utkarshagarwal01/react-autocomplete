@@ -67,42 +67,7 @@ module.exports = function (release) {
 
     module: {
       loaders: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          loader:  '6to5-loader'
-        },
-        {
-          test: /\.css$/,
-          loader: 'style!css'
-        },
-        {
-          test: /\.less$/,
-          loader: 'style!css!less'
-        },
-        {
-          test: /\.gif/,
-          loader: 'url-loader?limit=10000&mimetype=image/gif'
-        },
-        {
-          test: /\.jpg/,
-          loader: 'url-loader?limit=10000&mimetype=image/jpg'
-        },
-        {
-          test: /\.png/,
-          loader: 'url-loader?limit=10000&mimetype=image/png'
-        },
-        {
-          test: /\.js|.jsx$/,
-          loader: 'jsx-loader?stripTypes&harmony'
-        }
-      ],
-      postLoaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'jshint'
-      }
+        { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }
       ]
     }
   };

@@ -2,7 +2,7 @@ var PropTypes = require('prop-types');
 var React         = require('react');
 var createReactClass = require('create-react-class');
 var ReactDOM      = require('react-dom');
-var joinClasses   = require('classnames');
+var classnames   = require('classnames');
 
 var Autocomplete = createReactClass({
   displayName: 'Autocomplete',
@@ -48,7 +48,7 @@ var Autocomplete = createReactClass({
   },
 
   render: function() {
-    var className = joinClasses(
+    var className = classnames(
       this.props.className,
       'react-autocomplete-Autocomplete',
       this.state.showResults ?
@@ -192,9 +192,7 @@ var Autocomplete = createReactClass({
   onBlur: function() {
     // wrap in setTimeout so we can catch a click on results
     this.blurTimer = setTimeout(() => {
-      if (this.isMounted()) {
         this.setState({showResults: false});
-      }
     }, 100);
   },
 
@@ -362,7 +360,7 @@ class Result extends React.Component {
   };
 
   render() {
-    var className = joinClasses({
+    var className = classnames({
       'react-autocomplete-Result': true,
       'react-autocomplete-Result--active': this.props.focused
     });
