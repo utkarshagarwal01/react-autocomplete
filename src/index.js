@@ -1,20 +1,23 @@
+var PropTypes = require('prop-types');
 var React         = require('react');
+var createReactClass = require('create-react-class');
 var ReactDOM      = require('react-dom');
 var joinClasses   = require('classnames');
 
-var Autocomplete = React.createClass({
+var Autocomplete = createReactClass({
+  displayName: 'Autocomplete',
 
   propTypes: {
-    options: React.PropTypes.any,
-    search: React.PropTypes.func,
-    resultRenderer: React.PropTypes.oneOfType([
-      React.PropTypes.element,
-      React.PropTypes.func
+    options: PropTypes.any,
+    search: PropTypes.func,
+    resultRenderer: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func
     ]),
-    value: React.PropTypes.object,
-    onChange: React.PropTypes.func,
-    onError: React.PropTypes.func,
-    onFocus: React.PropTypes.func
+    value: PropTypes.object,
+    onChange: PropTypes.func,
+    onError: PropTypes.func,
+    onFocus: PropTypes.func
   },
 
   getDefaultProps: function() {
@@ -43,7 +46,6 @@ var Autocomplete = React.createClass({
       return result[this.props.resultIdentifier];
     }
   },
-
 
   render: function() {
     var className = joinClasses(
@@ -241,12 +243,11 @@ var Autocomplete = React.createClass({
       }
     }
     return -1;
-  }
+  },
 });
 
-var Results = React.createClass({
-
-  getResultIdentifier : function(result){
+class Results extends React.Component {
+  getResultIdentifier = (result) => {
     if(this.props.resultIdentifier === undefined){
       if(!result.id){
         throw Error("id property not found on result. You must specify a resultIdentifier and pass as props to autocomplete component");
@@ -255,9 +256,9 @@ var Results = React.createClass({
     }else{
       return result[this.props.resultIdentifier];
     }
-  },
+  };
 
-  render: function() {
+  render() {
     var style = {
       display: this.props.show ? 'block' : 'none',
       position: 'absolute',
@@ -270,9 +271,9 @@ var Results = React.createClass({
         {this.props.results.map(this.renderResult)}
       </ul>
     );
-  },
+  }
 
-  renderResult: function(result) {
+  renderResult = (result) => {
     var focused = this.props.focusedValue && this.getResultIdentifier(this.props.focusedValue) === this.getResultIdentifier(result);
     var Renderer = this.props.renderer || Result;
     return (<Renderer
@@ -283,21 +284,21 @@ var Results = React.createClass({
       onMouseEnter={this.onMouseEnterResult}
       onClick={this.props.onSelect}
       label={this.props.label}/>);
-  },
+  };
 
-  componentDidUpdate: function() {
+  componentDidUpdate() {
     this.scrollToFocused();
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     this.scrollToFocused();
-  },
+  }
 
-  componentWillMount: function() {
+  componentWillMount() {
     this.ignoreFocus = false;
-  },
+  }
 
-  scrollToFocused: function() {
+  scrollToFocused = () => {
     var focused = this.refs && this.refs.focused;
     if (focused) {
       var containerNode = ReactDOM.findDOMNode(this);
@@ -319,9 +320,9 @@ var Results = React.createClass({
         containerNode.scrollTop = bottom - height;
       }
     }
-  },
+  };
 
-  onMouseEnterResult: function(e, result) {
+  onMouseEnterResult = (e, result) => {
     // check if we need to prevent the next onFocus event because it was
     // probably caused by a mouseover due to scroll position change
     if (this.ignoreFocus) {
@@ -342,28 +343,25 @@ var Results = React.createClass({
         this.props.onFocus(result);
       }
     }
-  }
-});
+  };
+}
 
-var Result = React.createClass({
+class Result extends React.Component {
+  static defaultProps = {
+    label : function(result){
+      return result.title;
+    }
+  };
 
-  getDefaultProps : function(){
-    return {
-      label : function(result){
-        return result.title;
-      }
-    };
-  },
-
-  getLabel : function(result){
+  getLabel = (result) => {
     if(typeof this.props.label === 'function'){
       return this.props.label(result);
     }else if(typeof this.props.label === 'string'){
       return result[this.props.label];
     }
-  },
+  };
 
-  render: function() {
+  render() {
     var className = joinClasses({
       'react-autocomplete-Result': true,
       'react-autocomplete-Result--active': this.props.focused
@@ -378,23 +376,23 @@ var Result = React.createClass({
         <a>{this.getLabel(this.props.result)}</a>
       </li>
     );
-  },
+  }
 
-  onClick: function() {
+  onClick = () => {
     this.props.onClick(this.props.result);
-  },
+  };
 
-  onMouseEnter: function(e) {
+  onMouseEnter = (e) => {
     if (this.props.onMouseEnter) {
       this.props.onMouseEnter(e, this.props.result);
     }
-  },
+  };
 
-  shouldComponentUpdate: function(nextProps) {
+  shouldComponentUpdate(nextProps) {
     return (nextProps.result.id !== this.props.result.id ||
             nextProps.focused !== this.props.focused);
   }
-});
+}
 
 /**
 * Search options using specified search term treating options as an array
