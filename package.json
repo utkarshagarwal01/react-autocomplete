@@ -17,7 +17,6 @@
   "dependencies": {
     "browser-sync": "^2.0.0-rc10",
     "classnames": "^1.2.0",
-    "create-react-class": "^15.6.2",
     "engine.io": "^1.5.1",
     "prop-types": "^15.6.0",
     "react": "^15.6.0",
