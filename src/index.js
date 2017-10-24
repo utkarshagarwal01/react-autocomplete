@@ -1,13 +1,12 @@
 var PropTypes = require('prop-types');
 var React         = require('react');
-var createReactClass = require('create-react-class');
 var ReactDOM      = require('react-dom');
 var classnames   = require('classnames');
 
-var Autocomplete = createReactClass({
-  displayName: 'Autocomplete',
+class Autocomplete extends React.Component {
+  static displayName = 'Autocomplete';
 
-  propTypes: {
+  static propTypes = {
     options: PropTypes.any,
     search: PropTypes.func,
     resultRenderer: PropTypes.oneOfType([
@@ -18,36 +17,36 @@ var Autocomplete = createReactClass({
     onChange: PropTypes.func,
     onError: PropTypes.func,
     onFocus: PropTypes.func
-  },
+  };
 
-  getDefaultProps: function() {
-    return {search: searchArray};
-  },
+  static defaultProps = {search: searchArray};
 
-  getInitialState: function() {
-    var searchTerm = this.props.searchTerm ?
-      this.props.searchTerm :
-      this.props.value ?
-      this.props.value.title :
+  constructor(props) {
+    super(props);
+    var searchTerm = props.searchTerm ?
+      props.searchTerm :
+      props.value ?
+      props.value.title :
       '';
-    return {
+
+    this.state = {
       results: [],
       showResults: false,
       showResultsInProgress: false,
       searchTerm: searchTerm,
       focusedValue: null
     };
-  },
+  }
 
-  getResultIdentifier : function(result){
+  getResultIdentifier = (result) => {
     if(this.props.resultIdentifier === undefined){
       return result.id;
     }else{
       return result[this.props.resultIdentifier];
     }
-  },
+  };
 
-  render: function() {
+  render() {
     var className = classnames(
       this.props.className,
       'react-autocomplete-Autocomplete',
@@ -90,20 +89,20 @@ var Autocomplete = createReactClass({
           />
       </div>
     );
-  },
+  }
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     var searchTerm = nextProps.searchTerm ?
       nextProps.searchTerm :
       nextProps.value ?
       nextProps.value.title :
       '';
     this.setState({searchTerm: searchTerm});
-  },
+  }
 
-  componentWillMount: function() {
+  componentWillMount() {
     this.blurTimer = null;
-  },
+  }
 
   /**
     * Show results for a search term value.
@@ -112,22 +111,22 @@ var Autocomplete = createReactClass({
     *
     * @param {Search} searchTerm
     */
-  showResults: function(searchTerm) {
+  showResults = (searchTerm) => {
     this.setState({showResultsInProgress: true});
     this.props.search(
       this.props.options,
       searchTerm.trim(),
       this.onSearchComplete
     );
-  },
+  };
 
-  showAllResults: function() {
+  showAllResults = () => {
     if (!this.state.showResultsInProgress && !this.state.showResults) {
       this.showResults('');
     }
-  },
+  };
 
-  onValueChange: function(value) {
+  onValueChange = (value) => {
     var state = {
       value: value,
       showResults: false
@@ -142,9 +141,9 @@ var Autocomplete = createReactClass({
     if (this.props.onChange) {
       this.props.onChange(value);
     }
-  },
+  };
 
-  onSearchComplete: function(err, results) {
+  onSearchComplete = (err, results) => {
     if (err) {
       if (this.props.onError) {
         this.props.onError(err);
@@ -158,45 +157,45 @@ var Autocomplete = createReactClass({
       showResults: true,
       results: results
     });
-  },
+  };
 
-  onValueFocus: function(value) {
+  onValueFocus = (value) => {
     this.setState({focusedValue: value});
-  },
+  };
 
-  onQueryChange: function(e) {
+  onQueryChange = (e) => {
     var searchTerm = e.target.value;
     this.setState({
       searchTerm: searchTerm,
       focusedValue: null
     });
     this.showResults(searchTerm);
-  },
+  };
 
-  onFocus: function() {
+  onFocus = () => {
     if (this.blurTimer) {
       clearTimeout(this.blurTimer);
       this.blurTimer = null;
     }
     this.refs.search.focus();
-  },
+  };
 
-  onSearchInputFocus: function() {
+  onSearchInputFocus = () => {
     if (this.props.onFocus) {
       this.props.onFocus();
     }
 
     this.showAllResults();
-  },
+  };
 
-  onBlur: function() {
+  onBlur = () => {
     // wrap in setTimeout so we can catch a click on results
     this.blurTimer = setTimeout(() => {
         this.setState({showResults: false});
     }, 100);
-  },
+  };
 
-  onQueryKeyDown: function(e) {
+  onQueryKeyDown = (e) => {
 
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -229,9 +228,9 @@ var Autocomplete = createReactClass({
         this.showAllResults();
       }
     }
-  },
+  };
 
-  focusedValueIndex: function() {
+  focusedValueIndex = () => {
     if (!this.state.focusedValue) {
       return -1;
     }
@@ -241,8 +240,8 @@ var Autocomplete = createReactClass({
       }
     }
     return -1;
-  },
-});
+  };
+}
 
 class Results extends React.Component {
   getResultIdentifier = (result) => {
