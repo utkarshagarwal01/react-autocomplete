@@ -36,6 +36,8 @@ class Autocomplete extends React.Component {
       searchTerm: searchTerm,
       focusedValue: null
     };
+
+    this.blurTimer = null;
   }
 
   getResultIdentifier = (result) => {
@@ -100,7 +102,8 @@ class Autocomplete extends React.Component {
     this.setState({searchTerm: searchTerm});
   }
 
-  componentWillMount() {
+  componentWillUnmount() {
+    clearTimeout(this.blurTimer);
     this.blurTimer = null;
   }
 
